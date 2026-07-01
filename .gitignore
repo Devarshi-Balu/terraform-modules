@@ -1,0 +1,45 @@
+daws-88s
+Plan
+*.code-workspace
+keyPairs
+*.pem
+*.pub
+localstack
+*.zip
+*.tar
+*.tar.gz
+
+*.pdf
+
+.terraform*
+.vscode
+*.tfstate*
+
+# Local .terraform directories (contains provider plugins and cached modules)
+**/.terraform/*
+
+# .tfstate files contain sensitive credentials and secrets in plain text
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Exclude all variable files as they typically contain sensitive credentials
+# *.tfvars
+*.tfvars.json
+
+# Override files containing local alterations
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override directories
+.terraform.d/
+
+# CLI configuration files
+.terraformrc
+terraform.custom.tfprover
+terraform.rc
