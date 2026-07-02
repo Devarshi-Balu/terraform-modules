@@ -31,16 +31,41 @@ output "private_subnets"{
     }
 }
 
+output "private_database_subnets" {
+    value = {
+        for subnet, subnet_details in aws_subnet.main :
+            subnet => {
+                id                = subnet_details.id
+                availability_zone = subnet_details.availability_zone
+                cidr_block        = subnet_details.cidr_block
+            }
+        if local.subnets[subnet].is_private &&
+        strcontains(subnet, "database")
+    }
+}
+
+output "private_backend_subnets" {
+    value = {
+        for subnet, subnet_details in aws_subnet.main :
+            subnet => {
+                id                = subnet_details.id
+                availability_zone = subnet_details.availability_zone
+                cidr_block        = subnet_details.cidr_block
+            }
+        if local.subnets[subnet].is_private &&
+        strcontains(subnet, "backend")
+    }
+}
+
 output "public_subnets"{
     value = {
         for subnet, subnet_details in aws_subnet.main: 
             subnet => {
                 id = subnet_details.id 
-                availability_zone = subnet_details.availability_zone
+                availability_zone  = subnet_details.availability_zone
                 cidr_block = subnet_details.cidr_block
             }
-        
-        if (!(local.subnets[subnet].is_private))
+        if ((!local.subnets[subnet].is_private) && strcontains(subnet, "public")) 
     }
 }
 
