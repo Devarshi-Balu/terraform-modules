@@ -1,5 +1,5 @@
 data "aws_availability_zones" "zones"{
-    region = "us-east-1"
+    region = var.region
 }
 
 data "aws_vpc" default{
