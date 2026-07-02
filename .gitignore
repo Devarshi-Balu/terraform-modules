@@ -43,3 +43,4 @@ override.tf.json
 .terraformrc
 terraform.custom.tfprover
 terraform.rc
+provider.tf
